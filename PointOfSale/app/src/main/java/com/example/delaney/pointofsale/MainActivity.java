@@ -1,10 +1,12 @@
 package com.example.delaney.pointofsale;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -37,15 +39,35 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                //TODO: Later make this actually an add button
-                //This is just a test....
-                // For now just practice showing an item on the screen.
-                mCurrentItem = Item.getDefaultItem();
-                showCurrentItem();
+            addItem();
 
             }
         });
+    }
+
+    private void addItem() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //Simple dialog
+//        builder.setTitle("My title");
+//        builder.setMessage("Hello");
+//        builder.setPositiveButton("OK", null);
+
+        View view = getLayoutInflater().inflate(R.layout.dialog_add, null,false);
+        builder.setView(view);
+
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+
+            }
+        });
+
+        builder.setNegativeButton(android.R.string.cancel, null);
+
+        builder.create().show();
+
     }
 
     private void showCurrentItem() {
