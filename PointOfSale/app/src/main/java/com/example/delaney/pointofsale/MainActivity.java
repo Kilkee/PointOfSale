@@ -138,6 +138,12 @@ public class MainActivity extends AppCompatActivity {
            case R.id.action_search:
                 showSearchDialog();
                return true;
+           case R.id.action_clear_all:
+               // TODO will get rid of this .clear later
+              // mItems.clear();
+               clearAll();
+
+               return true;
            case R.id.action_settings:
                // startActivity(new Intent(Settings.ACTION_SETTINGS));
                startActivity(new Intent(Settings.ACTION_LOCALE_SETTINGS));
@@ -145,6 +151,27 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void clearAll() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Choose an item");
+        builder.setMessage("Are you sure you want to clear all the items? This cannot be undone.");
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                mItems.clear();
+                mCurrentItem = new Item();
+                showCurrentItem();
+            }
+        });
+
+        builder.setNegativeButton(android.R.string.cancel, null);
+
+
+        builder.create().show();
     }
 
     private void showSearchDialog() {
