@@ -133,7 +133,9 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;
             case R.id.action_remove:
-                Toast.makeText(this, "TODO Remove", Toast.LENGTH_SHORT).show();
+               mItems.remove(mCurrentItem);
+               mCurrentItem = new Item ();
+               showCurrentItem();
                 return true;
         }
         return super.onContextItemSelected(item);
